@@ -4,17 +4,17 @@ import { Course } from './Course';
 import { Professor } from './Professor';
 
 @Entity('exams')
-export class ExamEntity {
+export class Exam {
 	@PrimaryGeneratedColumn()
 	id: string;
 
-	@Column()
+	@Column('text')
 	name: string;
 
-	@Column()
+	@Column('text')
 	link: string;
 
-	@Column()
+	@Column({ type: 'enum', enum: Category })
 	category: Category;
 
 	@OneToOne(() => Professor, { eager: true })

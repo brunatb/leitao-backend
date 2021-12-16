@@ -6,7 +6,7 @@ export class Professor {
 	@PrimaryGeneratedColumn()
 	id: string;
 
-	@Column()
+	@Column('text')
 	name: string;
 
 	@OneToMany(() => Course, (course) => course.professor)

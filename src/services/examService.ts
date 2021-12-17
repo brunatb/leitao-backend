@@ -35,7 +35,6 @@ export async function findAllByProfessorId(id: number): Promise<Exam[]> {
 	if (!professor) throw new ExamError(`Professor with id = ${id} does not exist`, 'NOT_FOUND');
 
 	const exams = await getRepository(Exam).find({ where: { professor } });
-	console.log(exams);
 
 	if (!exams?.length) {
 		throw new ExamError(`No Exams found by Mr/Mrs ${professor.name}`);

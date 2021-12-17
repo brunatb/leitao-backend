@@ -31,7 +31,6 @@ export async function getExamsByProfessorId(
 	next: NextFunction,
 ): Promise<Response> {
 	try {
-		console.log(req.params);
 		const joiValidation = idSchema.validate(req.params); // TO-DO checkar essse number
 		if (joiValidation.error) throw new ExamError(joiValidation.error.message);
 

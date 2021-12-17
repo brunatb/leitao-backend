@@ -24,8 +24,7 @@ export async function create(exam: ExamDTO): Promise<Exam> {
 
 	const { name, pdfLink, category } = exam;
 
-	const newExam = await getRepository(Exam).create({ name, pdfLink, category, professor, course });
-
+	const newExam = getRepository(Exam).create({ name, pdfLink, category, professor, course });
 	await getRepository(Exam).save(newExam);
 
 	return newExam;

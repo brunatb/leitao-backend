@@ -11,15 +11,14 @@ export async function create(exam: ExamDTO): Promise<ObjectLiteral> {
 	if (!categoryExists) throw new ExamError('Invalid Exam Category.');
 
 	const professor = await professorService.findById(exam.professorId);
-	console.log(professor);
 	if (!professor)
 		throw new ExamError(`Professor with id = ${exam.professorId} does not exist`, 'NOT_FOUND');
 
 	const course = await courseService.findById(exam.courseId);
-	console.log(course);
 	if (!course) throw new ExamError(`Course with id = ${exam.courseId} does not exist`, 'NOT_FOUND');
 
-	if (professor.courses.includes(course)) {
+	const doesProfessorTeachCourse = professor.courses.some((c) => c.id === course.id);
+	if (!doesProfessorTeachCourse) {
 		throw new ExamError(`Mr/Mrs ${professor.name} does not teach ${course.name}`, 'NOT_FOUND');
 	}
 
@@ -34,4 +33,17 @@ export async function create(exam: ExamDTO): Promise<ObjectLiteral> {
 		.execute();
 
 	return newExam.generatedMaps;
+}
+
+export async function findAllByProfessorId(id: number): Promise<Exam[]> {
+	const professor = await professorService.findById(id);
+	if (!professor) throw new ExamError(`Professor with id = ${id} does not exist`, 'NOT_FOUND');
+
+	const exams = await getRepository(Exam).find({ where: { professor } });
+	console.log(exams);
+
+	if (!exams?.length) {
+		throw new ExamError(`No Exams found by Mr/Mrs ${professor.name}`);
+	}
+	return exams;
 }

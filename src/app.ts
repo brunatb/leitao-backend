@@ -15,7 +15,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use('/leites', examRouter);
+app.use(examRouter);
 app.use(serverErrorMiddleware);
 
 export default app;

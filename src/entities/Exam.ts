@@ -5,14 +5,14 @@ import { Professor } from './Professor';
 
 @Entity('exams')
 export class Exam {
-	@PrimaryGeneratedColumn()
+	@PrimaryGeneratedColumn({name:'exam_id'})
 	id: number;
 
 	@Column('text')
 	name: string;
 
-	@Column('text')
-	link: string;
+	@Column({ type: 'text', name: 'pdf_link' })
+	pdfLink: string;
 
 	@Column({ type: 'enum', enum: Category })
 	category: Category;

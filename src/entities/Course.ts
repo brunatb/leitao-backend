@@ -7,8 +7,4 @@ export class Course {
 
 	@Column('text')
 	name: string;
-
-	// @ManyToOne(() => Professor, (professor) => professor.courses)
-	// @JoinColumn({ name: 'professor_id' }) //TO-DO ver se precisa disso msm
-	// professor: Professor;
 }

@@ -9,6 +9,6 @@ export default async function serverErrorMiddleware(
 	next: NextFunction,
 ): Promise<Response> {
 	console.error('Error Middleware: ', err);
-	
+
 	return res.sendStatus(StatusCode.INTERNAL_SERVER_ERROR);
 }

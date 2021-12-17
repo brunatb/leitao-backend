@@ -3,7 +3,7 @@ import faker from 'faker';
 
 import { Course } from '../../src/entities/Course';
 
-export async function createCourse(name?: string) {
+export async function createCourse(name?: string): Promise<Course> {
 	const course = getRepository(Course).create({
 		name: name || faker.name.jobArea(),
 	});

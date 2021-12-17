@@ -13,7 +13,7 @@ export async function createExam(
 	name?: string,
 	pdfLink?: string,
 	category?: Category,
-) {
+): Promise<Exam> {
 	const exam = getRepository(Exam).create({
 		name: name || faker.name.findName(),
 		pdfLink: pdfLink || faker.internet.url(),

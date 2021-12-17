@@ -6,6 +6,6 @@ import { Course } from '../../src/entities/Course';
 
 export async function clearDatabase() {
 	await getRepository(Exam).delete({});
-	await getRepository(Professor).delete({});
 	await getRepository(Course).delete({});
+	await getRepository(Professor).delete({});
 }

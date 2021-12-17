@@ -1,8 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import testSchema from '../validations/examSchema';
 import ExamError from '../errors/ExamError';
-import ExamDTO from '../interfaces/ExamDTO';
+import ExamDTO from '../errors/interfaces/ExamDTO';
 import * as examService from '../services/examService';
+import StatusCode from '../enum/HttpStatus.enum';
 
 export async function postExam(req: Request, res: Response, next: NextFunction): Promise<Response> {
 	try {
@@ -11,14 +12,14 @@ export async function postExam(req: Request, res: Response, next: NextFunction):
 
 		const exam: ExamDTO = req.body;
 
-		const createdExam = examService.create(exam);
+		const createdExam = await examService.create(exam);
+
+		return res.status(StatusCode.CREATED).send(createdExam);
 	} catch (err) {
 		if (err instanceof ExamError) {
 			console.error(err.message);
 			return res.status(err.statusCode).send(err.message);
 		}
-		console.error(err);
-		res.sendStatus(500);
 		next(err);
 	}
 }

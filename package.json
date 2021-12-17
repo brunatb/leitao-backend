@@ -9,9 +9,9 @@
     "test": "NODE_ENV=test npx jest -i",
     "build": "NODE_ENV=production npx tsc --outDir dist",
     "dev": "NODE_ENV=dev ts-node-dev ./src/server.ts",
+    "start": "NODE_ENV=production NODE_TLS_REJECT_UNAUTHORIZED=0 ts-node ./src/server.ts",
     "migration:run": "npm run typeorm -- migration:run",
-    "migration:generate": "npm run typeorm -- migration:generate -n MyTable",
-    "start": "NODE_ENV=production NODE_TLS_REJECT_UNAUTHORIZED=0 ts-node ./src/server.ts"
+    "migration:generate": "npm run typeorm -- migration:generate -n MyTable"
   },
   "keywords": [],
   "author": "fernandollisboa",

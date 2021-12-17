@@ -1,11 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne } from 'typeorm';
 import Category from '../enum/Category.enum';
 import { Course } from './Course';
 import { Professor } from './Professor';
 
 @Entity('exams')
 export class Exam {
-	@PrimaryGeneratedColumn({name:'exam_id'})
+	@PrimaryGeneratedColumn({ name: 'exam_id' })
 	id: number;
 
 	@Column('text')
@@ -17,11 +17,11 @@ export class Exam {
 	@Column({ type: 'enum', enum: Category })
 	category: Category;
 
-	@OneToOne(() => Professor, { eager: true })
+	@ManyToOne(() => Professor, professor => professor.exams, { eager: true })
 	@JoinColumn({ name: 'professor_id' })
 	professor: Professor;
 
-	@OneToOne(() => Course, { eager: true })
+	@ManyToOne(() => Course, course => course.exams, { eager: true })
 	@JoinColumn({ name: 'course_id' })
 	course: Course;
 }

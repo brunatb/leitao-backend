@@ -1,4 +1,4 @@
-import { getRepository, ObjectLiteral } from 'typeorm';
+import { getRepository } from 'typeorm';
 import * as professorService from './professorService';
 import * as courseService from './courseService';
 import Category from '../enum/Category.enum';
@@ -6,7 +6,7 @@ import { Exam } from '../entities/Exam';
 import ExamDTO from '../errors/interfaces/ExamDTO';
 import ExamError from '../errors/ExamError';
 
-export async function create(exam: ExamDTO): Promise<ObjectLiteral> {
+export async function create(exam: ExamDTO): Promise<Exam> {
 	const categoryExists = exam.category in Category;
 	if (!categoryExists) throw new ExamError('Invalid Exam Category.');
 
@@ -24,15 +24,11 @@ export async function create(exam: ExamDTO): Promise<ObjectLiteral> {
 
 	const { name, pdfLink, category } = exam;
 
-	const newExam = await getRepository(Exam)
-		.createQueryBuilder()
-		.insert()
-		.into(Exam)
-		.values({ name, pdfLink, category, professor, course })
-		.returning('*')
-		.execute();
+	const newExam = await getRepository(Exam).create({ name, pdfLink, category, professor, course });
 
-	return newExam.generatedMaps;
+	await getRepository(Exam).save(newExam);
+
+	return newExam;
 }
 
 export async function findAllByProfessorId(id: number): Promise<Exam[]> {

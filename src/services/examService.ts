@@ -3,7 +3,7 @@ import * as professorService from './professorService';
 import * as courseService from './courseService';
 import Category from '../enum/Category.enum';
 import { Exam } from '../entities/Exam';
-import ExamDTO from '../errors/interfaces/ExamDTO';
+import ExamDTO from '../interfaces/ExamDTO';
 import ExamError from '../errors/ExamError';
 
 export async function create(exam: ExamDTO): Promise<Exam> {

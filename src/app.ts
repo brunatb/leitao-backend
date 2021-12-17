@@ -16,7 +16,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(examRouter);
+app.use('/exams', examRouter);
 app.use('/professors', professorRouter);
 app.use(serverErrorMiddleware);
 

@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import testSchema from '../validations/examSchema';
 import idSchema from '../validations/idSchema';
 import ExamError from '../errors/ExamError';
-import ExamDTO from '../errors/interfaces/ExamDTO';
+import ExamDTO from '../interfaces/ExamDTO';
 import * as examService from '../services/examService';
 import StatusCode from '../enum/HttpStatus.enum';
 

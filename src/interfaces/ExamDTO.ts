@@ -1,4 +1,4 @@
-import Category from '../../enum/Category.enum';
+import Category from '../enum/Category.enum';
 
 interface ExamDTO {
 	name: string;

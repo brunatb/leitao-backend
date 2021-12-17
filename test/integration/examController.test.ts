@@ -76,7 +76,7 @@ describe('POST /exams/create', () => {
 		expect(response.statusCode).toEqual(StatusCode.BAD_REQUEST);
 	});
 
-	it('should return 404 when the course does not exists', async () => {
+	it('should return 404 when the course does not exist', async () => {
 		const body = await generateExamBody({});
 		const response = await agent
 			.post('/exams/create')
@@ -85,7 +85,7 @@ describe('POST /exams/create', () => {
 		expect(response.statusCode).toEqual(StatusCode.NOT_FOUND);
 	});
 
-	it('should return 404 when the professor does not exists', async () => {
+	it('should return 404 when the professor does not exist', async () => {
 		const body = await generateExamBody({});
 		const response = await agent
 			.post('/exams/create')

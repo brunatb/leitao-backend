@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 import testSchema from '../validations/examSchema';
-import idSchema from '../validations/idSchema';
 import ExamError from '../errors/ExamError';
 import ExamDTO from '../interfaces/ExamDTO';
 import * as examService from '../services/examService';

@@ -24,25 +24,3 @@ export async function postExam(req: Request, res: Response, next: NextFunction):
 		next(err);
 	}
 }
-
-export async function getExamsByProfessorId(
-	req: Request,
-	res: Response,
-	next: NextFunction,
-): Promise<Response> {
-	try {
-		const joiValidation = idSchema.validate(req.params); // TO-DO checkar essse number
-		if (joiValidation.error) throw new ExamError(joiValidation.error.message);
-
-		const { id } = req.params;
-
-		const examsList = await examService.findAllByProfessorId(Number(id));
-		return res.status(StatusCode.OK).send(examsList);
-	} catch (err) {
-		if (err instanceof ExamError) {
-			console.error(err.message);
-			return res.status(err.statusCode).send(err.message);
-		}
-		next(err);
-	}
-}

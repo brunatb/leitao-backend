@@ -15,7 +15,7 @@
     "prettier"
   ],
   "rules": {
-    "no-console": "warn",
+    "no-console": "off",
     "global-require": "off"
   },
   "settings": {

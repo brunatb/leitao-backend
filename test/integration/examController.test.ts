@@ -7,7 +7,6 @@ import { createCourse } from '../factories/courseFactory';
 import { createProfessor } from '../factories/professorFactory';
 import generateExamBody from '../utils/generateExamBody';
 import StatusCode from '../../src/enum/HttpStatus.enum';
-import ExamError from '../../src/errors/ExamError';
 
 const agent = supertest(app);
 

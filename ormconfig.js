@@ -1,18 +1,18 @@
-/* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable no-undef */
 require('dotenv').config();
 
 module.exports = {
 	type: 'postgres',
 	url: process.env.DATABASE_URL,
 	migrationsTableName: 'migrations',
-	entities: ['src/entities/*.ts'],
-	migrations: ['src/migrations/*.ts'],
+	entities: ['dist/entities/*.js'],
+	migrations: ['dist/migrations/*.js'],
 	ssl: {
 		rejectUnauthorized: false,
 	},
 	cli: {
 		migrationsDir: 'src/migrations',
-		entitiesDir: 'src/entities/*.ts',
+		entitiesDir: 'dist/entities/*.js',
 	},
 };

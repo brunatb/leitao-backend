@@ -4,7 +4,7 @@ import ExamTestDTO from './protocols/ExamTestDTO';
 import { createCourse } from '../factories/courseFactory';
 import { createProfessor } from '../factories/professorFactory';
 
-export default async function generateExamBody(examDTO: ExamTestDTO): Promise<ExamTestDTO> {
+export default async function generateExamBody(examDTO?: ExamTestDTO): Promise<ExamTestDTO> {
 	const { name, pdfLink, category } = examDTO;
 	let { courseId, professorId } = examDTO;
 

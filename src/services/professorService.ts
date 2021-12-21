@@ -26,3 +26,19 @@ export async function getAllProfessors() {
 
 	return professors;
 }
+
+export async function findAllByCourseId(id: number): Promise<Professor[]> {
+	const professors = await getRepository(Professor)
+		.createQueryBuilder('professor')
+		.select('professor.professor_id', 'id')
+		.addSelect('professor.name', 'name')
+		.leftJoin('professor.courses', 'courses')
+		.where('courses.course_id= :id', { id })
+		.execute();
+
+	if (!professors?.length) {
+		throw new ExamError(`There are no Professors that teaches a course with id =${id}`);
+	}
+
+	return professors;
+}

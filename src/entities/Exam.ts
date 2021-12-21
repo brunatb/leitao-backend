@@ -17,11 +17,11 @@ export class Exam {
 	@Column({ type: 'enum', enum: Category })
 	category: Category;
 
-	@ManyToOne(() => Professor, professor => professor.exams, { eager: true })
+	@ManyToOne(() => Professor, (professor) => professor.exams, { eager: true })
 	@JoinColumn({ name: 'professor_id' })
 	professor: Professor;
 
-	@ManyToOne(() => Course, course => course.exams, { eager: true })
+	@ManyToOne(() => Course, (course) => course.exams, { eager: true })
 	@JoinColumn({ name: 'course_id' })
 	course: Course;
 }

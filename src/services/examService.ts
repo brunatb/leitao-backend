@@ -29,3 +29,15 @@ export async function create(exam: ExamDTO): Promise<Exam> {
 
 	return newExam;
 }
+
+export async function findAllByProfessorId(id: number): Promise<Exam[]> {
+	const professor = await professorService.findById(id);
+	if (!professor) throw new ExamError(`Professor with id = ${id} does not exist`, 'NOT_FOUND');
+
+	const exams = await getRepository(Exam).find({ where: { professor } });
+
+	if (!exams?.length) {
+		throw new ExamError(`No Exams found by Mr/Mrs ${professor.name}`);
+	}
+	return exams;
+}
